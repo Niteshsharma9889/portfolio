@@ -66,10 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Initialize EmailJS
-(function () {
-    emailjs.init("j7cCv03IsQcyhnUHz"); // Replace with your actual EmailJS public key
-})();
+// EmailJS will be initialized from the server-provided config
 
 // Contact form handling
 const contactForm = document.querySelector(".contact-form");
@@ -103,10 +100,19 @@ contactForm.addEventListener("submit", async (e) => {
     submitButton.textContent = "Sending...";
 
     try {
+        // Get EmailJS config from server
+        const configResponse = await fetch('/api/emailjs-config');
+        const config = await configResponse.json();
+        
+        // Initialize EmailJS with server-provided key
+        if (typeof emailjs !== 'undefined' && config.publicKey) {
+            emailjs.init(config.publicKey);
+        }
+        
         // Send email using EmailJS
         await emailjs.send(
-            "service_g3ljb2q", // Replace with your EmailJS service ID
-            "template_7tj117x", // Replace with your EmailJS template ID
+            config.serviceId,
+            config.templateId,
             {
                 from_name: name,
                 from_email: email,

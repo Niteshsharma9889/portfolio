@@ -13,6 +13,15 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// EmailJS configuration endpoint
+app.get('/api/emailjs-config', (req, res) => {
+  res.json({
+    publicKey: process.env.EMAILJS_PUBLIC_KEY || "j7cCv03IsQcyhnUHz",
+    serviceId: process.env.EMAILJS_SERVICE_ID || "service_g3ljb2q",
+    templateId: process.env.EMAILJS_TEMPLATE_ID || "template_7tj117x"
+  });
+});
+
 // Contact form endpoint
 app.post('/api/contact', (req, res) => {
   const { name, email, subject, message } = req.body;
