@@ -63,9 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Initialize EmailJS
+(function() {
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+})();
+
 // Contact form handling
 const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', (e) => {
+const submitButton = contactForm.querySelector('button[type="submit"]');
+
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     // Get form data
@@ -81,9 +88,57 @@ contactForm.addEventListener('submit', (e) => {
         return;
     }
     
-    // Simulate form submission
-    alert(`Thank you ${name}! Your message has been received. I'll get back to you soon.`);
-    contactForm.reset();
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address');
+        return;
+    }
+    
+    // Disable submit button and show loading
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    
+    try {
+        // Send email using EmailJS
+        await emailjs.send(
+            'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+            'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+            {
+                from_name: name,
+                from_email: email,
+                subject: subject,
+                message: message,
+                to_email: 'niteshsharma9670@gmail.com' // Your email
+            }
+        );
+        
+        // Also send to backend for logging
+        const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, email, subject, message })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert(result.message);
+            contactForm.reset();
+        } else {
+            alert('Error: ' + result.message);
+        }
+        
+    } catch (error) {
+        console.error('Error sending email:', error);
+        alert('Sorry, there was an error sending your message. Please try again.');
+    } finally {
+        // Re-enable submit button
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
+    }
 });
 
 // Typing animation for hero subtitle
