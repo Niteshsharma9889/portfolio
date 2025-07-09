@@ -1,4 +1,3 @@
-
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -64,62 +63,61 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Contact form handling
-const contactForm = document.querySelector('.contact-form');
+const contactForm = document.querySelector(".contact-form");
 const submitButton = contactForm.querySelector('button[type="submit"]');
 
-contactForm.addEventListener('submit', async (e) => {
+contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    
+
     // Get form data
     const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const subject = formData.get('subject');
-    const message = formData.get('message');
-    
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const subject = formData.get("subject");
+    const message = formData.get("message");
+
     // Simple validation
     if (!name || !email || !subject || !message) {
-        alert('Please fill in all fields');
+        alert("Please fill in all fields");
         return;
     }
-    
+
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address');
+        alert("Please enter a valid email address");
         return;
     }
-    
+
     // Disable submit button and show loading
     submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
-    
+    submitButton.textContent = "Sending...";
+
     try {
         // Send to backend for processing
-        const response = await fetch('/api/contact', {
-            method: 'POST',
+        const response = await fetch("/api/contact", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name, email, subject, message })
+            body: JSON.stringify({ name, email, subject, message }),
         });
-        
+
         const result = await response.json();
-        
+
         if (result.success) {
             alert(result.message);
             contactForm.reset();
         } else {
-            alert('Error: ' + result.message);
+            alert("Error: " + result.message);
         }
-        
     } catch (error) {
-        console.error('Error sending message:', error);
-        alert('Sorry, there was an error sending your message. Please try again.');
+        console.error("Error sending message:", error);
+        alert("Sorry, there was an error sending your message. Please try again.");
     } finally {
         // Re-enable submit button
         submitButton.disabled = false;
-        submitButton.textContent = 'Send Message';
+        submitButton.textContent = "Send Message";
     }
 });
 
@@ -146,7 +144,7 @@ window.addEventListener('load', () => {
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -155,7 +153,7 @@ window.addEventListener('scroll', () => {
             current = section.getAttribute('id');
         }
     });
-    
+
     navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
@@ -168,7 +166,7 @@ window.addEventListener('scroll', () => {
 function createParticles() {
     const hero = document.querySelector('.hero');
     const particleCount = 50;
-    
+
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.style.position = 'absolute';
@@ -190,7 +188,7 @@ style.textContent = `
         0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
         100% { transform: translateY(-1000px) rotate(360deg); opacity: 0; }
     }
-    
+
     .nav-link.active {
         color: #667eea !important;
     }
