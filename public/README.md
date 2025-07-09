@@ -88,9 +88,9 @@ The contact form uses EmailJS for client-side email sending. To set it up:
 1. Create an account at [EmailJS](https://www.emailjs.com/)
 2. Create a service and email template
 3. Update the credentials in `public/script.js`:
-   - Service ID: `service_g3ljb2q`
-   - Template ID: `template_7tj117x`
-   - Public Key: `j7cCv03IsQcyhnUHz`
+   - Service ID: `your id`
+   - Template ID: `your id`
+   - Public Key: `your id`
 
 ## 🔧 Customization
 
