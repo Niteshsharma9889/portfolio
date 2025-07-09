@@ -12,3 +12,19 @@ channel = "stable-24_11"
 run = ["node", "index.js"]
 deploymentTarget = "autoscale"
 ignorePorts = false
+
+[workflows]
+runButton = "Start Portfolio"
+
+[[workflows.workflow]]
+name = "Start Portfolio"
+author = 41499050
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node index.js"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
