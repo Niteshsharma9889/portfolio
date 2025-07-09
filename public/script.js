@@ -63,11 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Initialize EmailJS
-(function() {
-    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
-})();
-
 // Contact form handling
 const contactForm = document.querySelector('.contact-form');
 const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -100,20 +95,7 @@ contactForm.addEventListener('submit', async (e) => {
     submitButton.textContent = 'Sending...';
     
     try {
-        // Send email using EmailJS
-        await emailjs.send(
-            'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-            'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
-            {
-                from_name: name,
-                from_email: email,
-                subject: subject,
-                message: message,
-                to_email: 'niteshsharma9670@gmail.com' // Your email
-            }
-        );
-        
-        // Also send to backend for logging
+        // Send to backend for processing
         const response = await fetch('/api/contact', {
             method: 'POST',
             headers: {
@@ -132,7 +114,7 @@ contactForm.addEventListener('submit', async (e) => {
         }
         
     } catch (error) {
-        console.error('Error sending email:', error);
+        console.error('Error sending message:', error);
         alert('Sorry, there was an error sending your message. Please try again.');
     } finally {
         // Re-enable submit button
