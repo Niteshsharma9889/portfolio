@@ -1,28 +1,26 @@
 const express = require("express");
 const path = require("path");
+require("dotenv").config(); // Load environment variables
+
 const app = express();
-const PORT = 5000;
-require("dotenv").config(); // Load env vars from .env
+const PORT = process.env.PORT || 5000; // ✅ Required for Render
 
 // Middleware
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
+// Root Route
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// EmailJS configuration endpoint — SAFE (no fallback defaults!)
+// EmailJS Config Endpoint
 app.get("/api/emailjs-config", (req, res) => {
-  const { EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID } =
-    process.env;
+  const { EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID } = process.env;
 
   if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
-    return res
-      .status(500)
-      .json({ success: false, message: "EmailJS config missing" });
+    return res.status(500).json({ success: false, message: "EmailJS config missing" });
   }
 
   res.json({
@@ -32,21 +30,17 @@ app.get("/api/emailjs-config", (req, res) => {
   });
 });
 
-// Contact form endpoint
+// Contact Form Endpoint
 app.post("/api/contact", (req, res) => {
   const { name, email, subject, message } = req.body;
 
   if (!name || !email || !subject || !message) {
-    return res
-      .status(400)
-      .json({ success: false, message: "All fields are required" });
+    return res.status(400).json({ success: false, message: "All fields are required" });
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Please enter a valid email address" });
+    return res.status(400).json({ success: false, message: "Please enter a valid email address" });
   }
 
   console.log("Contact form submission:", {
@@ -63,6 +57,7 @@ app.post("/api/contact", (req, res) => {
   });
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Portfolio server running on http://0.0.0.0:${PORT}`);
+// Start Server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
