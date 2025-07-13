@@ -5,7 +5,7 @@ A modern, responsive portfolio website showcasing my skills as a Full Stack Deve
 
 ## 🚀 Live Demo
 
-[View Live Portfolio](https://3f071166-d196-4cdc-a218-00e6ab5bc060-00-1sl3eplv96o4d.pike.replit.dev/)
+[View Live Portfolio](https://portfolio-d6s2.onrender.com)
 
 ## 🛠 Technologies Used
 
