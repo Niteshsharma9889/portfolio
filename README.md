@@ -1,53 +1,149 @@
-# call-bound <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
 
-[![github actions][actions-image]][actions-url]
-[![coverage][codecov-image]][codecov-url]
-[![dependency status][deps-svg]][deps-url]
-[![dev dependency status][dev-deps-svg]][dev-deps-url]
-[![License][license-image]][license-url]
-[![Downloads][downloads-image]][downloads-url]
+# Portfolio Website - Nitesh Sharma
 
-[![npm badge][npm-badge-png]][package-url]
+A modern, responsive portfolio website showcasing my skills as a Full Stack Developer & Software Engineer.
 
-Robust call-bound JavaScript intrinsics, using `call-bind` and `get-intrinsic`.
+## 🚀 Live Demo
 
-## Getting started
+[View Live Portfolio](https://3f071166-d196-4cdc-a218-00e6ab5bc060-00-1sl3eplv96o4d.pike.replit.dev/)
 
-```sh
-npm install --save call-bound
+## 🛠 Technologies Used
+
+### Frontend
+- **HTML5** - Semantic markup and structure
+- **CSS3** - Modern styling with animations and responsive design
+- **JavaScript (ES6+)** - Interactive functionality and dynamic content
+- **Font Awesome** - Icon library
+- **Google Fonts** - Typography (Poppins)
+
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web application framework
+- **Nodemailer** - Email handling (configured for contact form)
+
+### Services & APIs
+- **EmailJS** - Client-side email service for contact form
+- **Intersection Observer API** - Scroll animations
+- **Fetch API** - HTTP requests
+
+### Development & Deployment
+- **Replit** - Development environment and hosting
+- **npm** - Package management
+- **Git** - Version control
+
+## 📂 Project Structure
+
+```
+portfolio/
+├── public/
+│   ├── index.html      # Main HTML file
+│   ├── style.css       # CSS styles and animations
+│   ├── script.js       # Client-side JavaScript
+│   └── profile.jpeg    # Profile image
+├── index.js            # Express server
+├── package.json        # Dependencies and scripts
+└── README.md           # Project documentation
 ```
 
-## Usage/Examples
+## ✨ Features
 
-```js
-const assert = require('assert');
-const callBound = require('call-bound');
+- **Responsive Design** - Works on all devices and screen sizes
+- **Modern UI/UX** - Clean, professional design with smooth animations
+- **Interactive Elements** - Hover effects, smooth scrolling, mobile navigation
+- **Contact Form** - Functional contact form with EmailJS integration
+- **Scroll Animations** - Elements animate as they come into view
+- **Particle Effects** - Animated background particles in hero section
+- **Active Navigation** - Highlights current section while scrolling
 
-const slice = callBound('Array.prototype.slice');
+## 🚀 Getting Started
 
-delete Function.prototype.call;
-delete Function.prototype.bind;
-delete Array.prototype.slice;
+### Prerequisites
+- Node.js (v14 or higher)
+- npm
 
-assert.deepEqual(slice([1, 2, 3, 4], 1, -1), [2, 3]);
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/portfolio.git
+cd portfolio
 ```
 
-## Tests
+2. Install dependencies:
+```bash
+npm install
+```
 
-Clone the repo, `npm install`, and run `npm test`
+3. Start the development server:
+```bash
+node index.js
+```
 
-[package-url]: https://npmjs.org/package/call-bound
-[npm-version-svg]: https://versionbadg.es/ljharb/call-bound.svg
-[deps-svg]: https://david-dm.org/ljharb/call-bound.svg
-[deps-url]: https://david-dm.org/ljharb/call-bound
-[dev-deps-svg]: https://david-dm.org/ljharb/call-bound/dev-status.svg
-[dev-deps-url]: https://david-dm.org/ljharb/call-bound#info=devDependencies
-[npm-badge-png]: https://nodei.co/npm/call-bound.png?downloads=true&stars=true
-[license-image]: https://img.shields.io/npm/l/call-bound.svg
-[license-url]: LICENSE
-[downloads-image]: https://img.shields.io/npm/dm/call-bound.svg
-[downloads-url]: https://npm-stat.com/charts.html?package=call-bound
-[codecov-image]: https://codecov.io/gh/ljharb/call-bound/branch/main/graphs/badge.svg
-[codecov-url]: https://app.codecov.io/gh/ljharb/call-bound/
-[actions-image]: https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/ljharb/call-bound
-[actions-url]: https://github.com/ljharb/call-bound/actions
+4. Open your browser and navigate to `http://localhost:5000`
+
+## 📧 Contact Form Setup
+
+The contact form uses EmailJS for client-side email sending. To set it up:
+
+1. Create an account at [EmailJS](https://www.emailjs.com/)
+2. Create a service and email template
+3. Update the credentials in `public/script.js`:
+   - Service ID: `your id`
+   - Template ID: `your id`
+   - Public Key: `your id`
+
+## 🔧 Customization
+
+### Personal Information
+- Update contact details in `public/index.html`
+- Replace `profile.jpeg` with your own photo
+- Modify social media links in the contact section
+
+### Styling
+- Colors and themes can be modified in `public/style.css`
+- Animations and transitions are customizable
+- Font choices can be changed in the Google Fonts import
+
+### Content
+- Add your own projects in the projects section
+- Update skills and technologies
+- Modify the about section with your information
+
+## 🌟 Projects Featured
+
+1. **AI Chatbot** - Flask backend with Gemini API integration
+2. **Task Management App** - Collaborative task management with real-time updates
+3. **Analytics Dashboard** - Data visualization and reporting capabilities
+
+## 📱 Responsive Breakpoints
+
+- **Desktop**: 1200px and above
+- **Tablet**: 768px - 1199px
+- **Mobile**: Below 768px
+
+## 🚀 Deployment
+
+This project is configured for deployment on Replit:
+
+1. The server binds to `0.0.0.0:5000` for external access
+2. Static files are served from the `public` directory
+3. Contact form API endpoint available at `/api/contact`
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Feel free to fork this project and customize it for your own portfolio. If you have suggestions for improvements, please open an issue or submit a pull request.
+
+## 📞 Contact
+
+- **Email**: niteshsharma9670@gmail.com
+- **LinkedIn**: [Nitesh Sharma](https://www.linkedin.com/in/nitesh-sharma-185273255/)
+- **GitHub**: [Niteshsharma9889](https://github.com/Niteshsharma9889)
+- **Instagram**: [@niteshsharma__1](https://www.instagram.com/niteshsharma__1/)
+
+---
+
+⭐ **If you found this helpful, please give it a star!** ⭐
